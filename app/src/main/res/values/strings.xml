@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Car App</string>
+    <string name="title">Car Details</string>
+    <string name="refresh_btn">Refresh</string>
+    <string name="quote_placeholder">Random Quote...</string>
+    <string name="CountryTitle">Country</string>
+    <string name="CommonNameTitle">CommonName</string>
+    <string name="IdTitle">ID</string>
+    <string name="NameTitle">Name</string>
+</resources>

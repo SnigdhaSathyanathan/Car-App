@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,7 +23,7 @@ class FragmentOne : Fragment(), MyAdapter1.onItemClickListener{
     private var param1: String? = null
     private var param2: String? = null
     lateinit var random_quote:TextView
-    lateinit var refresh_btn:Button
+    lateinit var refresh_btn:ImageButton
     lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {

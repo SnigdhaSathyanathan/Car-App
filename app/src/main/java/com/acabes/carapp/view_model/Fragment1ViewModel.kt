@@ -9,14 +9,10 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class Fragment1_Activity : ViewModel(),CoroutineScope {
+class Fragment1ViewModel : ViewModel(), CoroutineScope {
     private val job= Job()
     val quoteItem=MutableLiveData<String>()
     val carItem=MutableLiveData<List<Car>>()
-    init {
-        fetchQuote()
-        fetchCarDetails()
-    }
     fun fetchQuote(){
         launch {
             val api=RetrofitHelper().getInstance().create(APIinterface::class.java)
@@ -25,11 +21,8 @@ class Fragment1_Activity : ViewModel(),CoroutineScope {
     }
     fun fetchCarDetails(){
         launch {
-            val api=RetrofitCar().getInstance().create(APIcar::class.java)
-            val array=api.getCarDetails().body()
-            if (array != null) {
-                carItem.value=array.Results
-            }
+            val api=RetrofitHelper().getCarInstance().create(APIinterface::class.java)
+            carItem.value=api.getCarDetails().body()?.Results
         }
     }
 

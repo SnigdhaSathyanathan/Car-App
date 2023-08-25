@@ -12,79 +12,67 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.acabes.carapp.R
 import com.acabes.carapp.model.Car
-import com.acabes.carapp.view_model.Fragment1_Activity
-import com.acabes.carapp.view_model.MyAdapter1
+import com.acabes.carapp.view_model.Fragment1ViewModel
+import com.acabes.carapp.view_model.CarsAdapter
 
-
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-class FragmentOne : Fragment(), MyAdapter1.onItemClickListener{
-    private var param1: String? = null
-    private var param2: String? = null
-    lateinit var random_quote:TextView
-    lateinit var refresh_btn:ImageButton
+class CarFragment : Fragment(), CarsAdapter.OnItemClickListener{
+    lateinit var randomQuoteTextView:TextView
+    lateinit var refreshButton:ImageButton
     lateinit var recyclerView: RecyclerView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val inflated= inflater.inflate(R.layout.fragment_one, container, false)
+        val inflated= inflater.inflate(R.layout.car_details_fragment, container, false)
 
         with(inflated){
-            random_quote=findViewById(R.id.quote_textview)
-            refresh_btn=findViewById(R.id.refresh_button)
+            randomQuoteTextView=findViewById(R.id.quote_textview)
+            refreshButton=findViewById(R.id.refresh_button)
             recyclerView=findViewById(R.id.recyclerView)
+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
         }
         return inflated
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var viewmodel:Fragment1_Activity= ViewModelProvider(this).get(Fragment1_Activity::class.java)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        val viewmodel:Fragment1ViewModel= ViewModelProvider(this@CarFragment).get(Fragment1ViewModel::class.java)
+        viewmodel.fetchQuote()
+        viewmodel.fetchCarDetails()
         viewmodel.quoteItem.observe(viewLifecycleOwner){result->
-            random_quote.text=result
+            randomQuoteTextView.text=result
         }
         viewmodel.carItem.observe(viewLifecycleOwner){result->
-            var adapter=MyAdapter1(result,this)
+            val adapter=CarsAdapter(result,this)
             recyclerView.adapter=adapter
         }
-        refresh_btn.setOnClickListener{
+        refreshButton.setOnClickListener{
             viewmodel.fetchQuote()
         }
     }
-
     override fun onItemClicked(data: Car) {
         val bundle=Bundle().apply {
-            putParcelable("car",data)
+            putParcelable(carDetailsKey,data)
         }
-        val fragment2 = FragmentTwo.newInstance("", "")
+
+        val fragment2 = VehicleTypeFragment.newInstance()
         fragment2.arguments=bundle
         parentFragmentManager
             .beginTransaction()
             .addToBackStack(null)
-            .replace(R.id.container1, fragment2, "fragment2")
+            .replace(R.id.container, fragment2, "fragment2")
             .commit()
-
     }
+
     companion object {
+        const val carDetailsKey="car"
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragmentOne().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+        fun newInstance() = CarFragment()
     }
 }

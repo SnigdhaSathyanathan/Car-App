@@ -3,16 +3,16 @@
     android:id="@+id/list_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="3dp">
+    android:layout_margin="@dimen/spacing_8dp">
     <TextView
         android:id="@+id/Country"
         android:layout_width="0dp"
-        android:layout_marginStart="3dp"
+        android:layout_marginStart="@dimen/spacing_8dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"></TextView>
+        android:layout_weight="1"/>
     <TextView
         android:id="@+id/Mfr_CommonName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"></TextView>
+        android:layout_weight="1"/>
 </LinearLayout>

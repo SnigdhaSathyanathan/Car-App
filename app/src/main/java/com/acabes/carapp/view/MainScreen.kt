@@ -8,10 +8,10 @@ class MainScreen : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_screen)
-        val frag1=FragmentOne.newInstance("","")
+        val fragment1=CarFragment.newInstance()
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.container1,frag1,"fragment1")
+            .replace(R.id.container,fragment1,"fragment1")
             .commit()
     }
 }

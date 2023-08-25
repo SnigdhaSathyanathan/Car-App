@@ -1,18 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".view.FragmentOne">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+    tools:context=".view.CarFragment">
         <LinearLayout
             android:layout_width="match_parent"
             android:background="@color/transparent_black"
@@ -26,14 +18,13 @@
                     android:id="@+id/quote_textview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="3dp"
+                    android:layout_marginTop="@dimen/spacing_8dp"
                     android:fontFamily="@font/cookie_regular"
                     android:hint="@string/quote_placeholder"
-                    android:padding="5dp"
+                    android:padding="@dimen/spacing_8dp"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="25dp"></TextView>
+                    android:textSize="25sp"/>
             </ScrollView>
             <ImageButton
                 android:id="@+id/refresh_button"
@@ -43,40 +34,39 @@
                 android:layout_gravity="center"
                 android:background="@color/transparent"
                 android:src="@drawable/refresh_btn"
-                android:layout_marginBottom="5dp"
-                android:layout_marginEnd="10dp"></ImageButton>
+                android:layout_marginBottom="@dimen/spacing_8dp"
+                android:contentDescription="@string/refresh_btn"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/spacing_8dp"
             android:background="@color/transparent_white"
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp">
+                android:layout_marginTop="@dimen/spacing_8dp"
+                android:layout_marginBottom="@dimen/spacing_8dp">
                 <TextView
                     android:text="@string/CountryTitle"
                     android:layout_width="0dp"
-                    android:layout_marginStart="3dp"
-                    android:textSize="16dp"
+                    android:layout_marginStart="@dimen/spacing_16dp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"></TextView>
+                    android:layout_weight="1"/>
                 <TextView
                     android:text="@string/CommonNameTitle"
-                    android:textSize="16dp"
+                    android:textSize="16sp"
                     android:layout_width="0dp"
                     android:textStyle="bold"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"></TextView>
+                    android:layout_weight="1"/>
             </LinearLayout>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

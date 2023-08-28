@@ -7,6 +7,7 @@ import com.acabes.carapp.R
 class MainScreen : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setSupportActionBar(findViewById(R.id.toolbar))
         setContentView(R.layout.activity_main_screen)
         val fragment1=CarFragment.newInstance()
         supportFragmentManager

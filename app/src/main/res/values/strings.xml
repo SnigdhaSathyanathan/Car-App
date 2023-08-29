@@ -9,4 +9,8 @@
     <string name="NameTitle">Name</string>
     <string name="AppName">CAR\nAPP</string>
     <string name="VehicleTypesHeading">VehicleTypes</string>
+    <string name="UserNameHint">Username</string>
+    <string name="PasswordHint">Password</string>
+    <string name="SubmitButton">Submit</string>
+    <string name="LoginHeading">User Login</string>
 </resources>

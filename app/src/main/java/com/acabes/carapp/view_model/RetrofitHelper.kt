@@ -12,4 +12,8 @@ class RetrofitHelper {
     fun getCarInstance(): Retrofit {
         return Retrofit.Builder().baseUrl(Constants.BASE_URL_CAR).addConverterFactory(GsonConverterFactory.create()).build()
     }
+    fun getUserInstance():Retrofit{
+        return Retrofit.Builder().baseUrl(Constants.BASE_URL_AUTH).addConverterFactory(GsonConverterFactory.create()).build()
+    }
+
 }

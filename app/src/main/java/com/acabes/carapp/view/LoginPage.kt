@@ -1,20 +1,20 @@
 package com.acabes.carapp.view
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.acabes.carapp.R
 
-class MainScreen : AppCompatActivity(){
+class LoginPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setSupportActionBar(findViewById(R.id.toolbar))
-        setContentView(R.layout.activity_main_screen)
-        val fragment1=CarFragment.newInstance()
+        setContentView(R.layout.activity_login_page)
+        setSupportActionBar(findViewById(R.id.toolbar_login))
+        val loginFragment=LoginFragment.newInstance()
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.container,fragment1,"fragment1")
+            .replace(R.id.login_container,loginFragment,"loginFragment")
             .commit()
-        intent= Intent()
     }
+
+
 }

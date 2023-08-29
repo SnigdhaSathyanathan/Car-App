@@ -3,17 +3,19 @@
 <font
     android:font="@font/font1"
     android:fontWeight="400"
-    android:fontStyle="normal"></font>
+    android:fontStyle="normal"/>
     <font
         android:font="@font/font2"
         android:fontWeight="400"
-        android:fontStyle="normal"></font>
+        android:fontStyle="normal"/>
     <font
         android:font="@font/font3"
         android:fontWeight="400"
-        android:fontStyle="normal"></font>
+        android:fontStyle="normal"/>
     <font
-        android:font="@font/kalam_regular"></font>
+        android:font="@font/kalam_regular"/>
     <font
-        android:font="@font/cookie_regular"></font>
+        android:font="@font/cookie_regular"/>
+    <font
+        android:font="@font/login_font"/>
 </font-family>

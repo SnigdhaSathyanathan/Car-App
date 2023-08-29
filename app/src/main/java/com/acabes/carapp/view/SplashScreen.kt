@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_screen)
         Handler(mainLooper).postDelayed(Runnable {
-            val intent= Intent(this@MainActivity,MainScreen::class.java)
+            val intent= Intent(this@MainActivity,LoginPage::class.java)
             startActivity(intent)
             finish()
         },3000)

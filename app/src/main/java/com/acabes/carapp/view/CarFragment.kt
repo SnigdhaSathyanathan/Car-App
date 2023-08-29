@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.acabes.carapp.R
 import com.acabes.carapp.model.Car
-import com.acabes.carapp.view_model.Fragment1ViewModel
+import com.acabes.carapp.view_model.QuoteViewModel
 import com.acabes.carapp.view_model.CarsAdapter
 
 class CarFragment : Fragment(), CarsAdapter.OnItemClickListener{
@@ -42,7 +42,7 @@ class CarFragment : Fragment(), CarsAdapter.OnItemClickListener{
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val viewmodel:Fragment1ViewModel= ViewModelProvider(this@CarFragment).get(Fragment1ViewModel::class.java)
+        val viewmodel:QuoteViewModel= ViewModelProvider(this@CarFragment).get(QuoteViewModel::class.java)
         viewmodel.fetchQuote()
         viewmodel.fetchCarDetails()
         viewmodel.quoteItem.observe(viewLifecycleOwner){result->

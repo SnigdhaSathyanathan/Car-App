@@ -14,8 +14,8 @@ import com.acabes.carapp.R
 import com.acabes.carapp.view_model.LoginViewModel
 
 class LoginFragment : Fragment() {
-    lateinit var userName:EditText
-    lateinit var password:EditText
+    lateinit var userNameTextView:EditText
+    lateinit var passwordTextView:EditText
     lateinit var submitBtn: Button
     lateinit var errorMessage: TextView
 
@@ -27,8 +27,8 @@ class LoginFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         val inflated= inflater.inflate(R.layout.fragment_login, container, false)
         with(inflated){
-            userName=findViewById(R.id.username)
-            password=findViewById(R.id.password)
+            userNameTextView=findViewById(R.id.username)
+            passwordTextView=findViewById(R.id.password)
             submitBtn=findViewById(R.id.submit_btn)
             errorMessage=findViewById(R.id.error_in_validation)
         }
@@ -37,35 +37,28 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val loginViewModel= ViewModelProvider(this).get(LoginViewModel::class.java)
-        submitBtn.setOnClickListener{
-            if(nonEmptyValidation()){
-                val username=userName.text.toString()
-                val pass=password.text.toString()
-                loginViewModel.loginAuth(username,pass)
+        val loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        submitBtn.setOnClickListener {
+            val username = userNameTextView.text.toString()
+            val password = passwordTextView.text.toString()
+            loginViewModel.nonEmptyValidation(username, password)
+            loginViewModel.errorMsg.observe(viewLifecycleOwner) { result ->
+                if (result.isNotEmpty())
+                    errorMessage.text = result
+                else
+                    loginViewModel.loginAuth(username, password)
+            }
+            loginViewModel.responseData.observe(viewLifecycleOwner) { result ->
+                if (result) {
+                    errorMessage.text = ""
+                    val intent = Intent(requireContext(), MainScreen::class.java)
+                    startActivity(intent)
+                } else {
+                    errorMessage.text = "Invalid credentials"
                 }
             }
-        loginViewModel.responseData.observe(viewLifecycleOwner){ result->
-            if(result){
-                errorMessage.text=""
-                val intent= Intent(requireContext(),MainScreen::class.java)
-                startActivity(intent)
-            }
-            else{
-                errorMessage.text="Invalid credentials"
-            }
-        }
 
-    }
-    fun nonEmptyValidation():Boolean{
-        var result=false
-        if(userName.text.isEmpty())
-            errorMessage.text="Username cannot be empty"
-        else if (password.text.isEmpty())
-            errorMessage.text="Password cannot be empty"
-        else
-            result=true
-        return result
+        }
     }
     companion object {
         @JvmStatic fun newInstance() = LoginFragment()

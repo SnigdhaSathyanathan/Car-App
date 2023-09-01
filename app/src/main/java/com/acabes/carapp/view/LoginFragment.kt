@@ -1,5 +1,6 @@
 package com.acabes.carapp.view
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,13 +13,13 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.acabes.carapp.R
 import com.acabes.carapp.view_model.LoginViewModel
+import com.google.gson.Gson
 
 class LoginFragment : Fragment() {
     lateinit var userNameTextView:EditText
     lateinit var passwordTextView:EditText
     lateinit var submitBtn: Button
     lateinit var errorMessage: TextView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -57,7 +58,19 @@ class LoginFragment : Fragment() {
                     errorMessage.text = "Invalid credentials"
                 }
             }
-
+            loginViewModel.responseDataValues.observe(viewLifecycleOwner){ result->
+                try {
+                    val sharedPreferences = requireContext().getSharedPreferences("myPref", Context.MODE_PRIVATE)
+                    val edits = sharedPreferences?.edit()
+                    val JSONdata = Gson().toJson(result)
+                    edits?.putString("data", JSONdata)
+                    edits?.apply()
+                }
+                catch (e:Exception)
+                {
+                    println("${e.message}")
+                }
+            }
         }
     }
     companion object {

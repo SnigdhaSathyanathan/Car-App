@@ -9,8 +9,12 @@
     <string name="NameTitle">Name</string>
     <string name="AppName">CAR\nAPP</string>
     <string name="VehicleTypesHeading">VehicleTypes</string>
-    <string name="UserNameHint">Username</string>
+    <string name="UserName">Username</string>
     <string name="PasswordHint">Password</string>
+    <string name="Fname">First Name</string>
+    <string name="Lname">Last Name</string>
+    <string name="Email">Email id</string>
+    <string name="Gender">Gender</string>
     <string name="SubmitButton">Submit</string>
     <string name="LoginHeading">User Login</string>
 </resources>

@@ -6,4 +6,6 @@
     <color name="transparent_black">#8F000000</color>
     <color name="transparent">#00000000</color>
     <color name="splash_transparent">#CDFFFFFF</color>
+    <color name="profile_background">#E0FFFFFF</color>
+    <color name="background_yellow">#FAC360</color>
 </resources>

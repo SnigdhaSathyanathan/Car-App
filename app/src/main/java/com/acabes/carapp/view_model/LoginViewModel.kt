@@ -4,11 +4,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.acabes.carapp.model.LoginRequest
+import com.acabes.carapp.model.LoginResponse
 import kotlinx.coroutines.launch
 
 class LoginViewModel() : ViewModel(){
     var errorMsg=MutableLiveData<String>()
     var responseData=MutableLiveData<Boolean>()
+    var responseDataValues=MutableLiveData<LoginResponse>()
     val loginAPI=RetrofitHelper().getUserInstance().create(APIinterface::class.java)
     fun nonEmptyValidation(username: String, password: String){
         if(username.isEmpty())
@@ -22,7 +24,9 @@ class LoginViewModel() : ViewModel(){
         val loginRequest=LoginRequest(username,password)
         viewModelScope.launch{
             try{
-                responseData.value=loginAPI.login(loginRequest).isSuccessful
+                val result=loginAPI.login(loginRequest)
+                responseData.value=result.isSuccessful
+                responseDataValues.value=result.body()
             }catch(e:Exception){
                 e.printStackTrace()
             }

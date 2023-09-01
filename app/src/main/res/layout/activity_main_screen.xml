@@ -17,7 +17,15 @@
         app:titleTextColor="@color/white"
         app:title="@string/title"
         android:layout_marginBottom="@dimen/spacing_16dp"
-        android:padding="@dimen/spacing_24dp"/>
+        android:padding="@dimen/spacing_24dp">
+        <ImageView
+            android:id="@+id/account"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/spacing_24dp"
+            android:background="@drawable/profile_rounded_corner"
+            android:layout_width="40dp"
+            android:layout_height="40dp"/>
+    </androidx.appcompat.widget.Toolbar>
     <LinearLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
